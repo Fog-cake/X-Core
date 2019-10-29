@@ -189,7 +189,11 @@ module riscv_soc_top(
 		.clock_en_i    				('1					),
 		.test_en_i     				('0					),
 						
-		.boot_addr_i   				(32'h20000000		),
+		`ifdef 	EXTERNAL_FASH		
+        .boot_addr_i                (32'h20000000        ),
+        `else
+        .boot_addr_i                (32'h80000000        ),
+        `endif
 		.core_id_i     				('0					),
 		.cluster_id_i  				('0					),
 						
@@ -750,49 +754,49 @@ module riscv_soc_top(
     .O(spi_0_io3_io)
   );
   
-   IOBUF spi_1_io0_io_iobuf
-		(
-		.I(io0_o_0),//
-		.T(io0_t_0),
-		.O(io0_i_0),
-		.IO(spi_1_io0_io)
-		);
-   IOBUF spi_1_io1_io_iobuf
-   		(
-		.I(io1_o_0),
-		.T(io1_t_0),
-		.O(io1_i_0),
-		.IO(spi_1_io1_io)
-		);
-		   IOBUF spi_1_io2_io_iobuf
-   		(
-		.I(0),
-		.T(0),
-		.O(0),
-		.IO(spi_1_io2_io)
-		);
-		   IOBUF spi_1_io3_io_iobuf
-   		(
-		.I(0),
-		.T(0),
-		.O(0),
-		.IO(spi_1_io3_io)
-		);
-
-   IOBUF spi_1_sck_io_iobuf
-      	(
-		.I(sck_o_0), //
-		.T(sck_t_0),
-		.O(sck_i_0),
-		.IO(spi_1_sck_io)
-		);
-   IOBUF spi_1_ss_io_iobuf
-   		(
-		.I(ss_o_0), //
-		.T(ss_t_0),
-		.O(ss_i_0),
-		.IO(spi_1_ss_io)
-		);
+//   IOBUF spi_1_io0_io_iobuf
+//		(
+//		.I(io0_o_0),//
+//		.T(io0_t_0),
+//		.O(io0_i_0),
+//		.IO(spi_1_io0_io)
+//		);
+//   IOBUF spi_1_io1_io_iobuf
+//   		(
+//		.I(io1_o_0),
+//		.T(io1_t_0),
+//		.O(io1_i_0),
+//		.IO(spi_1_io1_io)
+//		);
+//		   IOBUF spi_1_io2_io_iobuf
+//   		(
+//		.I(0),
+//		.T(0),
+//		.O(0),
+//		.IO(spi_1_io2_io)
+//		);
+//		   IOBUF spi_1_io3_io_iobuf
+//   		(
+//		.I(0),
+//		.T(0),
+//		.O(0),
+//		.IO(spi_1_io3_io)
+//		);
+//
+//   IOBUF spi_1_sck_io_iobuf
+//      	(
+//		.I(sck_o_0), //
+//		.T(sck_t_0),
+//		.O(sck_i_0),
+//		.IO(spi_1_sck_io)
+//		);
+//   IOBUF spi_1_ss_io_iobuf
+//   		(
+//		.I(ss_o_0), //
+//		.T(ss_t_0),
+//		.O(ss_i_0),
+//		.IO(spi_1_ss_io)
+//		);
 
   IOBUF spi_0_io0_iobuf
        (.I(spi_0_io0_o),

@@ -14,11 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */    
 
-`define RISCV_FPGA_SIM //2018.5.14
+//`define RISCV_FPGA_SIM //2018.5.14
 `define SYNTHESIS      //2018.5.14
 `define DIS_CACHE
 //`define DIS_ISA_M    //disable m-type riscv isa
-
+`define EXTERNAL_FASH
 // no traces for synthesis, they are not synthesizable
 `ifndef SIMULATION
 `ifndef SYNTHESIS
