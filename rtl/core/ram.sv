@@ -15,7 +15,7 @@
 // processor core.
 
 `include "../../rtl/core/riscv_config.sv"
-`define FPGA
+
 module ram
     #(
     parameter ADDR_WIDTH = 34
@@ -40,7 +40,7 @@ module ram
   );
 
    // Instantiate the ram
-`ifndef FPGA
+`ifdef RISCV_FPGA_SIM
    dp_ram
      #(
        .ADDR_WIDTH (ADDR_WIDTH)
@@ -80,30 +80,6 @@ module ram
 		.doutb(data_rdata_o)  // output wire [31 : 0] doutb
 );  
 
-		 
-	// itcm ITCM (
-		// .clka(clk),    // input wire clka
-		// .ena(0),      // input wire ena
-		// .wea(0),      // input wire [0 : 0] wea
-		// .addra(0),  // input wire [12 : 0] addra
-		// .dina(0),    // input wire [31 : 0] dina
-		// .clkb(clk),    // input wire clkb
-		// .enb(instr_req_i),      // input wire enb
-		// .addrb(instr_addr_i[15:2]),  // input wire [12 : 0] addrb
-		// .doutb(instr_rdata_o)  // output wire [31 : 0] doutb
-	// );
-	
-	// dtcm DTCM(
-		// .clka(clk),    // input wire clka
-		// .ena(data_req_i),      // input wire ena
-		// .wea(data_we_i),      // input wire [0 : 0] wea
-		// .addra(data_addr_i[15:2]),  // input wire [12 : 0] addra
-		// .dina(data_wdata_i),    // input wire [31 : 0] dina
-		// .clkb(clk),    // input wire clkb
-		// .enb(data_req_i),      // input wire enb
-		// .addrb(data_addr_i[15:2]),  // input wire [12 : 0] addrb
-		// .doutb(data_rdata_o)  // output wire [31 : 0] doutb
-	// );
 `endif		
    assign data_gnt_o  = data_req_i;
    assign instr_gnt_o = instr_req_i;
